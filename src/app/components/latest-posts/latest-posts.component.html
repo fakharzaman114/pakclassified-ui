@@ -1,0 +1,120 @@
+<section class="section-spacing">
+    <div class="app-container">
+        <!-- Section Header -->
+        <div class="text-center mb-5">
+            <h2 class="fw-bold mb-3 text-primary">Latest Posts</h2>
+            <p class="text-muted fs-5">Check out the newest advertisements</p>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3 text-muted">Loading latest posts...</p>
+        </div>
+
+        <!-- Posts Grid -->
+        <div *ngIf="!isLoading && paginatedAds.length > 0; else noPosts">
+            <div class="row g-4 justify-content-center">
+                <div *ngFor="let ad of paginatedAds" class="col-12 col-sm-6 col-lg-4">
+                    <div class="post-card card">
+
+                        <!-- Image Section -->
+                        <div class="position-relative">
+                            <img *ngIf="hasImages(ad)" [src]="ad.images[0].url" [alt]="ad.name" class="post-image">
+
+                            <div *ngIf="!hasImages(ad)" class="no-image text-center">
+                                <div class="fs-2 mb-2">📷</div>
+                                <small>No Image Available</small>
+                            </div>
+
+                            <!-- Type Badge -->
+                            <div class="position-absolute top-0 start-0 m-3">
+                                <span class="badge bg-dark text-white fw-bold px-3 py-2 custom-badge">{{
+                                    ad.type?.name }}</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="card-body">
+                            <h5 class="card-title mb-2">{{ ad.name }}</h5>
+                            <p class="card-text fw-bold mb-3">{{ ad.price | pkrCurrency }}</p>
+                            <p class="card-text text-muted mb-3">{{ getDescriptionText(ad.description) }}</p>
+
+                            <!-- Advertisement Details -->
+                            <div class="ad-details mb-3">
+                                <div class="ad-detail-row">
+                                    <span class="label">Location:</span>
+                                    <span class="value">{{ ad.cityArea?.name }}</span>
+                                </div>
+                                <div class="ad-detail-row">
+                                    <span class="label">Category:</span>
+                                    <span class="value">{{ ad.subCategory?.name }}</span>
+                                </div>
+                                <div class="ad-detail-row">
+                                    <span class="label">Status:</span>
+                                    <span class="value badge bg-success text-white">{{ ad.status?.name }}</span>
+                                </div>
+                                <!-- <div class="ad-detail-row">
+                                    <span class="label">Views:</span>
+                                    <span class="value">{{ ad.hits }}</span>
+                                </div> -->
+                                <div class="ad-detail-row">
+                                    <span class="label">Posted By:</span>
+                                    <span class="value">{{ ad.postedBy?.name }}</span>
+                                </div>
+                            </div>
+
+                            <!-- Tags -->
+                            <div *ngIf="hasTags(ad)" class="mb-3">
+                                <div class="d-flex flex-wrap gap-1">
+                                    <span *ngFor="let tag of ad.tags"
+                                        class="badge bg-success text-white px-3 py-2 small">
+                                        {{ tag.name }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Action Button -->
+                            <div class="mt-auto pt-2">
+                                <button class="btn btn-primary w-100" (click)="viewAdDetails(ad.id)">
+                                    <i class="fa-solid fa-eye me-2"></i> View Details
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div *ngIf="totalPages > 1" class="d-flex justify-content-center mt-4">
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item" [class.disabled]="page === 1">
+                            <button class="page-link" (click)="prevPage()">Previous</button>
+                        </li>
+                        <li class="page-item" *ngFor="let p of getPageNumbers()" [class.active]="page === p">
+                            <button class="page-link" (click)="goToPage(p)">{{ p }}</button>
+                        </li>
+                        <li class="page-item" [class.disabled]="page === totalPages">
+                            <button class="page-link" (click)="nextPage()">Next</button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!-- No Posts State -->
+        <ng-template #noPosts>
+            <div *ngIf="!isLoading" class="text-center py-5 text-muted">
+                <div class="mb-3">
+                    <i class="fa-solid fa-inbox fa-3x opacity-50"></i>
+                </div>
+                <h5 class="mb-2 text-dark">No Posts Available</h5>
+                <p class="mb-0">Be the first to post an advertisement!</p>
+            </div>
+        </ng-template>
+    </div>
+</section>

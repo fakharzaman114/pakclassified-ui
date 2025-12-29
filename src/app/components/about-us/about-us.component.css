@@ -1,0 +1,134 @@
+/* ABOUT SECTION */
+.about-img-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+/* Image hover animation */
+.about-img-wrapper:hover .about-img {
+    transform: scale(1.05);
+}
+
+.about-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    color: #1e293b;
+}
+
+.about-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 1.5rem;
+}
+
+/* Button */
+.about-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all .3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.about-btn:hover {
+    background: #ff6b35;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* MAIN POINTS */
+.main-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 1.5rem;
+}
+
+/* BULLET CARD */
+.card-bullet {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #2563eb;
+    transition: .3s ease;
+    flex: 1 1 calc(50% - 15px);
+    min-width: 250px;
+}
+
+.card-bullet i {
+    color: #2563eb;
+    font-size: 1.2rem;
+}
+
+.card-bullet h5 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.card-bullet:hover {
+    transform: translateX(6px);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
+    .about-text {
+        text-align: center;
+    }
+
+    /* main points stack vertically */
+    .main-points {
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+    }
+
+    .card-bullet {
+        width: 100%;
+        max-width: 350px;
+        flex: none;
+    }
+
+    .about-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-bullet {
+        padding: 10px 14px;
+    }
+
+    .card-bullet h5 {
+        font-size: 0.95rem;
+    }
+}

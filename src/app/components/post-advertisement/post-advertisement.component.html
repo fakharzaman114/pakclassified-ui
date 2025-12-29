@@ -1,0 +1,150 @@
+<div class="post-ad-card">
+    <div class="post-ad-header">
+        <h2>Post Advertisement</h2>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submitAdvertisement()" class="post-ad-form">
+
+        <!-- NAME & PRICE -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Name *</label>
+                <input type="text" formControlName="name" placeholder="Enter Advertisement Name" />
+            </div>
+
+            <div class="form-group">
+                <label>Price *</label>
+                <input type="number" formControlName="price" placeholder="Enter Price in Pkr Rupees" />
+            </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+            <label>Description</label>
+            <textarea rows="3" formControlName="description"></textarea>
+        </div>
+
+        <!-- CATEGORY & SUBCATEGORY -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Category *</label>
+                <select formControlName="categoryId" (change)="onCategoryChange($event)">
+                    <option value="">-- Select Category --</option>
+                    <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>SubCategory *</label>
+                <select formControlName="subCategoryId">
+                    <option value="">-- Select SubCategory --</option>
+                    <option *ngFor="let sc of subCategories" [value]="sc.id">{{ sc.name }}</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- CITY & CITY AREA -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>City *</label>
+                <select formControlName="cityId" (change)="onCityChange($event)">
+                    <option value="">-- Select City --</option>
+                    <option *ngFor="let c of cities" [value]="c.id">{{ c.name }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>City Area *</label>
+                <select formControlName="cityAreaId">
+                    <option value="">-- Select City Area --</option>
+                    <option *ngFor="let a of cityAreas" [value]="a.id">{{ a.name }}</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- TYPE & STATUS -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Advertisement Type *</label>
+                <select formControlName="typeId">
+                    <option value="">-- Select Type --</option>
+                    <option *ngFor="let t of types" [value]="t.id">{{ t.name }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Status *</label>
+                <select formControlName="statusId">
+                    <option value="">-- Select Status --</option>
+                    <option *ngFor="let s of statuses" [value]="s.id">{{ s.name }}</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- START DATE & END DATE -->
+        <div class="form-row">
+            <div class="form-group">
+                <label>Start Date *</label>
+                <input type="date" formControlName="startsOn" />
+            </div>
+
+            <div class="form-group">
+                <label>End Date *</label>
+                <input type="date" formControlName="endsOn" />
+            </div>
+        </div>
+
+
+        <!-- TAGS (Existing + New) -->
+        <div class="form-row">
+            <!-- Existing Tags -->
+            <div class="form-group">
+                <label>Select Existing Tags</label>
+                <select (change)="onExistingTagSelected($event)">
+                    <option value="">-- Select Tag --</option>
+                    <option *ngFor="let tg of existingTags" [value]="tg.id">{{ tg.name }}</option>
+                </select>
+
+                <div class="tags-list">
+                    <span *ngFor="let id of selectedTagIds">
+                        {{ getTagNameById(id) }}
+                        <button type="button" (click)="removeExistingTag(id)">x</button>
+                    </span>
+                </div>
+            </div>
+
+            <!-- New Tags -->
+            <div class="form-group">
+                <label>Add New Tag</label>
+                <div class="new-tag-input">
+                    <input #newTag placeholder="Enter tag..." />
+                    <button type="button" (click)="addNewTag(newTag.value); newTag.value=''">Add</button>
+                </div>
+
+                <div class="tags-list">
+                    <span *ngFor="let tag of newTagNames.controls; let i = index">
+                        {{ tag.value }}
+                        <button type="button" (click)="removeNewTag(i)">x</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- IMAGES (full width) -->
+        <div class="form-group">
+            <label>Upload Images</label>
+            <input type="file" multiple (change)="onImagesSelected($event)" />
+        </div>
+
+        <!-- IMAGE PREVIEWS -->
+        <div class="image-preview-list" *ngIf="imagePreviews.length > 0">
+            <div class="img-box" *ngFor="let img of imagePreviews; let i = index">
+                <img [src]="img" />
+                <button type="button" class="remove-btn" (click)="removeImage(i)">x</button>
+            </div>
+        </div>
+
+        <button type="button" class="submit-btn" (click)="submitAdvertisement(); navigateToAds();">Post
+            Advertisement</button>
+    </form>
+</div>

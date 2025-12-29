@@ -1,0 +1,119 @@
+<div class="signup-wrapper">
+    <div class="signup-card">
+        <h2 class="title">Sign Up</h2>
+        <p class="subtitle">Create your account</p>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+            <!-- Role Selection -->
+            <div class="input-group">
+                <i class="fa-solid fa-user-tag icon"></i>
+                <select formControlName="roleId" class="form-select">
+                    <option value="" disabled selected>Select Role</option>
+                    <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+                </select>
+            </div>
+            <p class="error" *ngIf="signupForm.controls['roleId'].touched && signupForm.controls['roleId'].invalid">
+                Please select a role
+            </p>
+
+            <!-- Name -->
+            <div class="input-group">
+                <i class="fa-solid fa-user icon"></i>
+                <input type="text" formControlName="name" placeholder="Full Name" />
+            </div>
+            <p class="error" *ngIf="signupForm.controls['name'].touched && signupForm.controls['name'].invalid">
+                Name is required (min 2 characters)
+            </p>
+
+            <!-- Email -->
+            <div class="input-group">
+                <i class="fa-solid fa-envelope icon"></i>
+                <input type="email" formControlName="email" placeholder="Email Address" />
+            </div>
+            <p class="error" *ngIf="signupForm.controls['email'].touched && signupForm.controls['email'].invalid">
+                Enter a valid email address
+            </p>
+
+            <!-- Password -->
+            <div class="input-group">
+                <i class="fa-solid fa-lock icon"></i>
+                <input type="password" formControlName="password" placeholder="Password" />
+            </div>
+            <p class="error" *ngIf="signupForm.controls['password'].touched && signupForm.controls['password'].invalid">
+                Password must be at least 6 characters
+            </p>
+
+            <!-- Confirm Password -->
+            <div class="input-group">
+                <i class="fa-solid fa-lock icon"></i>
+                <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" />
+            </div>
+            <p class="error"
+                *ngIf="signupForm.controls['confirmPassword'].touched && signupForm.controls['confirmPassword'].errors?.['passwordMismatch']">
+                Passwords do not match
+            </p>
+
+            <!-- Contact Number -->
+            <div class="input-group">
+                <i class="fa-solid fa-phone icon"></i>
+                <input type="text" formControlName="contactNumber" placeholder="Contact Number (Optional)" />
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="input-group">
+                <i class="fa-solid fa-calendar icon"></i>
+                <input type="date" formControlName="dateOfBirth" />
+            </div>
+
+            <!-- Security Question -->
+            <div class="input-group">
+                <i class="fa-solid fa-question icon"></i>
+                <select formControlName="securityQuestion" class="form-select">
+                    <option value="" selected disabled>Security Question (Optional)</option>
+                    <option value="city">What city were you born in?</option>
+                    <option value="mother_maiden">What is your mother’s maiden name?</option>
+                    <option value="first_pet">What was the name of your first pet?</option>
+                    <option value="favorite_color">What is your favorite color?</option>
+                    <option value="elementary_school">What was the name of your elementary school?</option>
+                    <option value="father_middle_name">What is your father’s middle name?</option>
+                    <option value="first_car">What was the make of your first car?</option>
+                    <option value="favorite_food">What is your favorite food?</option>
+                    <option value="favorite_sports_team">What is your favorite sports team?</option>
+                    <option value="best_friend_city">In what city did you meet your best friend?</option>
+                    <option value="childhood_nickname">What was your childhood nickname?</option>
+                    <option value="favorite_teacher">What is the name of your favorite teacher?</option>
+                    <option value="street_grew_up">What street did you grow up on?</option>
+                    <option value="first_job">What was your first job?</option>
+                    <option value="favorite_book_movie">What is the name of your favorite book or movie?</option>
+                </select>
+            </div>
+
+            <!-- Security Answer -->
+            <div class="input-group">
+                <i class="fa-solid fa-key icon"></i>
+                <input type="text" formControlName="securityAnswer" placeholder="Security Answer (Optional)" />
+            </div>
+
+
+            <!-- Terms -->
+            <div class="terms">
+                <input type="checkbox" id="termsCheckbox" formControlName="agreeToTerms" />
+                <label for="termsCheckbox">I agree to the <a href="#">terms & conditions</a></label>
+            </div>
+            <p class="error"
+                *ngIf="signupForm.controls['agreeToTerms'].touched && signupForm.controls['agreeToTerms'].invalid">
+                You must accept the terms to continue
+            </p>
+
+            <!-- Submit -->
+            <button type="submit" class="btn-submit" [disabled]="signupForm.invalid || isLoading">
+                {{ isLoading ? 'Creating Account...' : 'Sign Up' }}
+            </button>
+
+            <div class="signin-text">
+                Already have an account? <a routerLink="/signin">Sign In</a>
+            </div>
+        </form>
+    </div>
+</div>

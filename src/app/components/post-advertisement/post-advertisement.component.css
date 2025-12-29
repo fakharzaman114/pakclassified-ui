@@ -1,0 +1,211 @@
+/* Container Card */
+.post-ad-card {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 25px 30px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.post-ad-card:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.post-ad-header h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+/* Form general styling */
+.post-ad-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form Row for 2 columns */
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-row .form-group {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form group styling */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-weight: 600;
+    color: #555;
+}
+
+input,
+textarea,
+select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+select[multiple] {
+    height: 120px;
+}
+
+/* Tags styling */
+.form-group button {
+    padding: 4px 8px;
+    border: 1px solid #2563eb;
+    background-color: #2563eb;
+    color: #ffffff;
+    transition: 0.2s ease-in;
+}
+
+.form-group button:hover {
+    transform: translateY(-2px);
+    background-color: #ff6b35;
+    border: 2px solid #ffffff;
+}
+
+.tags-list {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tags-list span {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    background: #d1e7ff;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #333;
+    margin: 3px;
+}
+
+.tags-list span button {
+    margin-left: 6px;
+    background: #2563eb;
+    border: none;
+    color: white;
+    padding: 3px 9px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.tags-list span button:hover {
+    background: #ff6b35;
+}
+
+/* New input + button inline for new tags */
+.new-tag-input {
+    display: flex;
+    gap: 5px;
+}
+
+.new-tag-input input {
+    flex: 1;
+}
+
+.new-tag-input button {
+    flex-shrink: 0;
+}
+
+
+
+/* Image Preview */
+.image-preview-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.img-box {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.img-box .remove-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 17px;
+}
+
+.img-box .remove-btn:hover {
+    background-color: red;
+}
+
+/* Submit button */
+.submit-btn {
+    width: 100%;
+    padding: 14px 0;
+    background: #2563eb;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #ff6b35;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-row .form-group {
+        flex: 1 1 100%;
+    }
+
+    .post-ad-card {
+        padding: 20px 15px;
+    }
+}

@@ -1,0 +1,59 @@
+<div class="carousal-container">
+    <div #swiperContainer class="swiper swiper-carousal">
+        <div class="swiper-wrapper">
+            @for (slide of slides; track slide.id) {
+            <div class="swiper-slide">
+                <!-- Background Image -->
+                <div class="slide-background" [style.backgroundImage]="'url(' + slide.imageUrl + ')'"></div>
+
+                <!-- Content Overlay -->
+                <div class="slide-content">
+                    <div class="content-wrapper">
+                        <div class="subtitle">{{ slide.subtitle }}</div>
+                        <h1 class="title">{{ slide.title }}</h1>
+                        <p class="description">{{ slide.description }}</p>
+                        <button class="action-button" (click)="onButtonClick(slide)">
+                            {{ slide.buttonText }}
+                            <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        <!-- Pagination Dots -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Controls Panel: Prev / Play-Pause / Next -->
+    <div class="controls-panel">
+        <button class="control-btn" (click)="prevSlide()">
+            <svg class="control-icon" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    d="M15 18l-6-6 6-6"></path>
+            </svg>
+        </button>
+
+        <button class="control-btn" (click)="toggleAutoplay()">
+            <svg *ngIf="!isAutoplayActive" class="control-icon" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    d="M5 3v18l15-9L5 3z"></path>
+            </svg>
+            <svg *ngIf="isAutoplayActive" class="control-icon" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"></path>
+            </svg>
+        </button>
+
+        <button class="control-btn" (click)="nextSlide()">
+            <svg class="control-icon" viewBox="0 0 24 24">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 6l6 6-6 6"></path>
+            </svg>
+        </button>
+    </div>
+</div>

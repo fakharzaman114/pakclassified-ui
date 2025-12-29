@@ -1,0 +1,164 @@
+<section class="section-spacing">
+    <div class="app-container">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)" (click)="goBack()">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ad?.name}}</li>
+            </ol>
+        </nav>
+
+        <div class="row g-5" *ngIf="ad && !error">
+            <!-- Image Gallery -->
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <!-- Main Image -->
+                        <div class="main-image-container text-center mb-4">
+                            <img [src]="mainImage" [alt]="ad.name" class="img-fluid rounded-3 main-image">
+                        </div>
+
+                        <!-- Thumbnails -->
+                        <div *ngIf="ad.images && ad.images.length > 1" class="thumbnails-scroll">
+                            <div class="d-flex gap-3 justify-content-center">
+                                <img *ngFor="let image of ad.images" [src]="image.url" [alt]="image.caption || ad.name"
+                                    class="thumbnail rounded-2" [class.thumbnail-active]="mainImage === image.url"
+                                    (click)="setMainImage(image.url)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-sm sticky-top" style="top: 100px;">
+                    <div class="card-body p-4">
+                        <!-- Badges -->
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="badge bg-primary">{{ad.type?.name}}</span>
+                            <span class="badge bg-success">{{ad.status?.name}}</span>
+                            <span class="badge bg-warning text-dark">Verified</span>
+                        </div>
+
+                        <!-- Title & Price -->
+                        <h1 class="h3 fw-bold text-dark mb-2">{{ad.name}}</h1>
+                        <p class="h2 text-primary fw-bold mb-4">{{ad.price | pkrCurrency}}</p>
+
+                        <!-- Key Features -->
+                        <div class="key-features mb-4">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="text-center p-3 bg-light rounded-3">
+                                        <i class="fa-solid fa-location-dot text-primary mb-2 d-block fs-4"></i>
+                                        <small class="text-muted d-block">Location</small>
+                                        <strong>{{ad.cityArea?.name}}</strong>
+                                        <div class="small text-muted">{{ad.cityArea?.city?.name}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center p-3 bg-light rounded-3">
+                                        <i class="fa-solid fa-eye text-primary mb-2 d-block fs-4"></i>
+                                        <small class="text-muted d-block">Views</small>
+                                        <strong>{{ad.hits}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-grid gap-2 mb-4">
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-phone me-2"></i>Contact Seller
+                            </button>
+                            <button class="btn btn-outline-primary">
+                                <i class="fa-solid fa-message me-2"></i>Send Message
+                            </button>
+                        </div>
+
+                        <!-- Seller Info -->
+                        <div class="seller-card p-3 bg-light rounded-3">
+                            <div class="d-flex align-items-center">
+                                <div class="seller-avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                                    style="width: 50px; height: 50px;">
+                                    <i class="fa-solid fa-user fs-5"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">Posted by {{ad.postedBy?.name}}</h6>
+                                    <small class="text-muted">Active Seller</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Section -->
+        <div class="row mt-4" *ngIf="ad && !error">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <!-- Description -->
+                        <div class="mb-5">
+                            <h3 class="h5 fw-bold mb-3 text-primary">Description</h3>
+                            <p class="text-muted lead">{{ad.description}}</p>
+                        </div>
+
+                        <!-- Specifications -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4 class="h6 fw-bold mb-3 text-primary">Ad Specifications</h4>
+                                <div class="specs-list">
+                                    <div class="d-flex justify-content-between py-2 border-bottom">
+                                        <span class="text-muted">Category</span>
+                                        <strong>{{ad.subCategory?.name}}</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between py-2 border-bottom">
+                                        <span class="text-muted">Type</span>
+                                        <strong>{{ad.type?.name}}</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between py-2 border-bottom">
+                                        <span class="text-muted">Status</span>
+                                        <strong>{{ad.status?.name}}</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between py-2 border-bottom">
+                                        <span class="text-muted">Location</span>
+                                        <strong>{{ad.cityArea?.name}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="h6 fw-bold mb-3 text-primary">Additional Info</h4>
+                                <div class="specs-list">
+                                    <div class="d-flex justify-content-between py-2 border-bottom">
+                                        <span class="text-muted">Posted Date</span>
+                                        <strong>{{formatDate(ad.startsOn)}}</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between py-2 border-bottom">
+                                        <span class="text-muted">Expiry Date</span>
+                                        <strong>{{formatDate(ad.endsOn)}}</strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between py-2 border-bottom">
+                                        <span class="text-muted">Total Views</span>
+                                        <strong>{{ad.hits}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tags -->
+                        <div *ngIf="ad.tags && ad.tags.length > 0" class="mt-5">
+                            <h4 class="h6 fw-bold mb-3 text-primary">Tags</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span *ngFor="let tag of ad.tags" class="badge bg-success text-white border px-3 py-2">
+                                    {{tag.name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

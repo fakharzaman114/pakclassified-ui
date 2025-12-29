@@ -1,0 +1,58 @@
+<section class="search-section section-spacing">
+    <div class="app-container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <div class="row g-3 align-items-end">
+                            <!-- Keyword Search -->
+                            <div class="col-md-3 col-sm-6">
+                                <label class="form-label fw-semibold">Keyword</label>
+                                <input type="text" class="form-control" placeholder="What are you looking for?"
+                                    [(ngModel)]="searchKeyword" name="searchKeyword">
+                            </div>
+
+                            <!-- Category Filter -->
+                            <div class="col-md-3 col-sm-6">
+                                <label class="form-label fw-semibold">Select Category</label>
+                                <select class="form-select" [(ngModel)]="selectedCategoryId" name="selectedCategoryId">
+                                    <option [value]="0" selected>Choose Category</option>
+                                    @for (category of categories; track category.id) {
+                                    <option [value]="category.id">{{category.name}}</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <!-- City Area Filter -->
+                            <div class="col-md-3 col-sm-6">
+                                <label class="form-label fw-semibold">Select City Area</label>
+                                <select class="form-select" [(ngModel)]="selectedCityAreaId" name="selectedCityAreaId">
+                                    <option [value]="0" selected>Choose City Area</option>
+                                    @for (cArea of cityAreas; track cArea.id) {
+                                    <option [value]="cArea.id">{{cArea.name}}</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <!-- Search Button -->
+                            <div class="col-md-3 col-sm-6">
+                                <button class="btn btn-warning w-100 fw-semibold py-2" (click)="onSearch()">
+                                    <i class="fas fa-search me-2"></i>Search
+                                </button>
+                            </div>
+
+                            <!-- Reset Button -->
+                            <div class="col-12 mt-3">
+                                <div class="text-end">
+                                    <button class="btn btn-reset" (click)="resetSearch()">
+                                        <i class="fas fa-refresh me-2"></i>Reset Filters
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

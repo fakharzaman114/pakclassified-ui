@@ -1,0 +1,18 @@
+<div class="navbar-top py-1">
+    <div class="container-fluid">
+        <div class="navbar-top-content d-flex justify-content-end align-items-center gap-3">
+            <ng-container *ngIf="!isLoggedIn(); else userMenu">
+                <button class="btn-signin" routerLink="/signin">Login In</button>
+                <button class="btn-signup" routerLink="/signup">Sign Up</button>
+            </ng-container>
+
+            <ng-template #userMenu>
+                <div class="user-info d-flex align-items-center gap-3">
+                    <span class="user-name">Welcome, <strong> {{ getUserName() }} </strong></span>
+                    <button class="btn-dashboard" (click)="goToDashboard()">Dashboard</button>
+                    <button class="btn-logout" (click)="logout()">Logout</button>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

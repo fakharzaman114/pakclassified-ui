@@ -1,0 +1,97 @@
+.navbar-top {
+    background: #FFFBF0;
+    border-bottom: 0.5px solid #bbbaba;
+    padding: 8px 0;
+    width: 100%;
+}
+
+.navbar-top-content {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-name {
+    font-weight: 500;
+    color: #495057;
+    font-size: 16px;
+}
+
+/* Button Styles */
+.btn-signin,
+.btn-signup {
+    color: #ffffff;
+    background-color: #2563eb;
+    border-radius: 8px;
+    padding: 8px 16px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-signin:hover,
+.btn-signup:hover {
+    background-color: #333333;
+    transform: translateY(-1px);
+}
+
+.btn-dashboard {
+    color: #2563eb;
+    background-color: transparent;
+    border: 1px solid #2563eb;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-dashboard:hover {
+    background-color: #2563eb;
+    color: white;
+}
+
+.btn-logout {
+    color: #dc3545;
+    background-color: transparent;
+    border: 1px solid #dc3545;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .navbar-top .container-fluid {
+        padding: 0 0.5rem;
+        /* Use your global container padding */
+    }
+
+    .user-info {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .btn-signin,
+    .btn-signup {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,135 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scrolling for the whole page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Basic body styles */
+body {
+    margin: 0;
+    padding: 0;
+    background: #FFFBF0;
+    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Open Sans', 'Lato', 'Roboto', Arial, sans-serif; */
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Custom scrollbar for webkit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2563eb;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2d2d2d;
+}
+
+/* Global Container */
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* All containers use same standard */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Section spacing consistency */
+.section-spacing {
+    padding: 3rem 0;
+}
+
+@media (max-width: 768px) {
+
+    .app-container,
+    .container {
+        padding: 0 0.5rem;
+    }
+
+    .section-spacing {
+        padding: 2rem 0;
+    }
+}
+
+/* Smooth cubic-bezier transitions for all button states */
+.login-swal-popup .login-confirm-btn,
+.swal2-popup .login-confirm-btn,
+.login-swal-popup .login-cancel-btn,
+.swal2-popup .login-cancel-btn {
+    transition: background-color 0.25s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1),
+        box-shadow 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Confirm Button */
+.login-swal-popup .login-confirm-btn,
+.swal2-popup .login-confirm-btn {
+    display: inline-block;
+    min-width: 96px;
+    padding: 8px 20px !important;
+    border-radius: 6px !important;
+    border: none !important;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #2563eb !important;
+    color: #ffffff !important;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Confirm Hover */
+.login-swal-popup .login-confirm-btn:hover,
+.swal2-popup .login-confirm-btn:hover {
+    background-color: #2563eb !important;
+    transform: translateY(-2px);
+    /* subtle lift */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Cancel button */
+.login-swal-popup .login-cancel-btn,
+.swal2-popup .login-cancel-btn {
+    display: inline-block;
+    min-width: 96px;
+    padding: 8px 20px !important;
+    border-radius: 6px !important;
+    border: none !important;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #fd2217 !important;
+    color: #ffffff !important;
+    margin-left: 8px !important;
+}
+
+/* Cancel Hover */
+.login-swal-popup .login-cancel-btn:hover,
+.swal2-popup .login-cancel-btn:hover {
+    background-color: #fd2217 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Fix default SweetAlert overrides */
+.swal2-popup .login-confirm-btn,
+.swal2-popup .login-cancel-btn {
+    -webkit-appearance: none;
+    appearance: none;
+}

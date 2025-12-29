@@ -1,0 +1,47 @@
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h2 class="title">Sign In</h2>
+        <p class="subtitle">Access your account</p>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <!-- Email -->
+            <div class="input-group" [class.invalid]="form.controls['email'].touched && form.controls['email'].invalid">
+                <i class="fa-solid fa-envelope icon"></i>
+                <input type="email" placeholder="Email address" formControlName="email" />
+            </div>
+
+            <p class="error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('required')">
+                Email is required
+            </p>
+            <p class="error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('email')">
+                Enter a valid email address
+            </p>
+
+            <!-- Password -->
+            <div class="input-group"
+                [class.invalid]="form.controls['password'].touched && form.controls['password'].invalid">
+                <i class="fa-solid fa-lock icon"></i>
+                <input type="password" placeholder="Password" formControlName="password" />
+            </div>
+
+            <p class="error" *ngIf="form.controls['password'].touched && form.controls['password'].invalid">
+                Password is required
+            </p>
+
+            <!-- Button: instantly active when form is valid -->
+            <button type="submit" class="btn-submit" [class.active]="form.valid" [disabled]="form.invalid">
+                Sign In
+            </button>
+
+            <div class="signup-text">
+                Don't have an account? <a routerLink="/signup">Sign Up Here</a>
+            </div>
+
+            <div class="back-text">
+                <a routerLink="/">Back to Home</a>
+            </div>
+
+        </form>
+    </div>
+</div>

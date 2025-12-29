@@ -1,0 +1,170 @@
+<section class="user-dashboard-section section-spacing">
+    <div class="app-container">
+        <div class="row g-4">
+
+            <!-- LEFT COLUMN - ADS -->
+            <div class="col-lg-8">
+
+                <!-- Loading State -->
+                <div *ngIf="isLoading" class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading your advertisements...</p>
+                </div>
+
+                <!-- Recent Ads Section -->
+                <div *ngIf="!isLoading && paginatedAds.length > 0" class="recent-ads-section">
+                    <div class="section-header text-center mb-4">
+                        <h2>Your Recent Ads</h2>
+                        <p class="text-muted">Here are your latest advertisements</p>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-12 col-md-6" *ngFor="let ad of paginatedAds">
+                            <div class="post-card card shadow-sm h-100">
+
+                                <!-- Ad Image -->
+                                <div class="image-wrapper">
+                                    <img *ngIf="hasImages(ad)" [src]="ad.images[0].url" [alt]="ad.name"
+                                        class="card-img-top post-image">
+                                    <div *ngIf="!hasImages(ad)" class="no-image text-center text-muted py-5">
+                                        <div class="fs-3">📷</div>
+                                        <small>No Image Available</small>
+                                    </div>
+                                </div>
+
+                                <!-- Content -->
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">{{ ad.name }}</h5>
+                                    <p class="card-text text-success fw-bold">{{ ad.price | pkrCurrency }}</p>
+                                    <p class="card-text text-muted">{{ getDescriptionText(ad.description ?? '') }}</p>
+
+                                    <!-- Advertisement Details -->
+                                    <div class="ad-details">
+                                        <div class="detail-item" *ngIf="ad.cityArea">
+                                            <span class="detail-label">City Area:</span>
+                                            <span class="detail-value">{{ ad.cityArea.name }}</span>
+                                        </div>
+                                        <div class="detail-item" *ngIf="ad.subCategory">
+                                            <span class="detail-label">SubCategory:</span>
+                                            <span class="detail-value">{{ ad.subCategory.name }}</span>
+                                        </div>
+                                        <div class="detail-item" *ngIf="ad.type">
+                                            <span class="detail-label">Type:</span>
+                                            <span class="detail-value">{{ ad.type.name }}</span>
+                                        </div>
+                                        <div class="detail-item" *ngIf="ad.status">
+                                            <span class="detail-label">Status:</span>
+                                            <span class="detail-value" [class]="getStatusClass(ad)">{{ ad.status.name
+                                                }}</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-label">Views:</span>
+                                            <span class="detail-value">{{ ad.hits }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3" *ngIf="ad.tags && ad.tags.length > 0">
+                                        <span class="badge bg-success me-1 mb-1" *ngFor="let tag of ad.tags">
+                                            {{ tag.name }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No Ads Message -->
+                <div *ngIf="!isLoading && userAds.length === 0" class="text-center py-5">
+                    <div class="no-ads-placeholder">
+                        <i class="fas fa-bullhorn fa-3x text-muted mb-3"></i>
+                        <h3>No Advertisements Yet</h3>
+                        <p class="text-muted">You haven't posted any advertisements yet.</p>
+                        <button class="btn btn-success btn-lg" (click)="navigateToCreateAd()">
+                            <i class="fas fa-plus me-2"></i>Create Your First Ad
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <nav *ngIf="totalPages > 1" class="mt-4 d-flex justify-content-center">
+                    <ul class="pagination">
+
+                        <li class="page-item" [class.disabled]="page === 1">
+                            <button class="page-link" (click)="prevPage()">Previous</button>
+                        </li>
+
+                        <li class="page-item" *ngFor="let p of getPageNumbers()" [class.active]="p === page">
+                            <button class="page-link" (click)="goToPage(p)">
+                                {{ p }}
+                            </button>
+                        </li>
+
+                        <li class="page-item" [class.disabled]="page === totalPages">
+                            <button class="page-link" (click)="nextPage()">Next</button>
+                        </li>
+
+                    </ul>
+                </nav>
+
+
+            </div>
+
+            <!-- RIGHT COLUMN - PROFILE INFO -->
+            <div class="col-lg-4">
+                <div class="profile-section" *ngIf="currentUser && !isLoading">
+                    <div class="profile-card card shadow-sm">
+                        <div class="card-body p-4">
+                            <h3 class="mb-3 text-center">Your Profile</h3>
+
+                            <div class="profile-details">
+                                <div class="detail-item">
+                                    <span class="detail-label">Name:</span>
+                                    <span class="detail-value">{{ currentUser.name }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Email:</span>
+                                    <span class="detail-value">{{ currentUser.email }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Phone:</span>
+                                    <span class="detail-value">{{ getUserContact() }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Role:</span>
+                                    <span class="detail-value">{{ getUserRole() }}</span>
+                                </div>
+                                <div class="detail-item" *ngIf="currentUser.dateOfBirth">
+                                    <span class="detail-label">DOB:</span>
+                                    <span class="detail-value">{{ formatDate(currentUser.dateOfBirth) }}</span>
+                                </div>
+                            </div>
+
+                            <!-- Statistics Section -->
+                            <div class="stats-section mt-4 p-3 bg-light rounded">
+                                <h5 class="text-center mb-3">Your Stats</h5>
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <div class="stat-number text-primary">{{ totalAds }}</div>
+                                        <div class="stat-label">Total Ads</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="stat-number text-success">{{ activeAds }}</div>
+                                        <div class="stat-label">Active</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="stat-number text-warning">{{ pendingAds }}</div>
+                                        <div class="stat-label">Pending</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

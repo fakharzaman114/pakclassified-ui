@@ -1,0 +1,67 @@
+/* Logo styling */
+.navbar {
+    min-height: 40px;
+}
+
+.navbar-brand.logo img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.navbar>.container-fluid {
+    align-items: center;
+}
+
+.navbar-brand.logo img:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.head1 {
+    color: #2563eb;
+}
+
+.head2 {
+    color: #333333;
+}
+
+.nav-item .nav-link {
+    color: #333333;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #333333;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Hover effects using Secondary Color */
+.dropdown-menu .dropdown-item:hover {
+    color: #333333;
+    background-color: #a5b9e6;
+}
+
+.nav-item .nav-link:hover {
+    color: #2563eb;
+}
+
+.btn-style {
+    padding: 8px 10px;
+    background-color: #2563eb;
+    border-color: #2563eb;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-style:hover {
+    background-color: #333333;
+    border-color: #333333;
+    color: #ffffff;
+    transform: translateY(-2px);
+}

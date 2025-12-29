@@ -1,0 +1,119 @@
+.footer-section {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    margin-top: auto;
+}
+
+.footer-section h5 {
+    color: #ffc107;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #ffc107;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.footer-section p {
+    color: #bdc3c7;
+    line-height: 1.6;
+}
+
+.footer-section a {
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-section a:hover {
+    color: #ffc107;
+    transform: translateX(5px);
+}
+
+.footer-section .list-unstyled li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section .contact-info p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.footer-section .contact-info i {
+    color: #ffc107;
+    width: 20px;
+}
+
+.footer-section .form-control {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #7f8c8d;
+    color: white;
+    border-radius: 5px;
+}
+
+.footer-section .form-control::placeholder {
+    color: #bdc3c7;
+}
+
+.footer-section .form-control:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffc107;
+    box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.2);
+    color: white;
+}
+
+.footer-section .btn-warning {
+    background: #ffc107;
+    border: none;
+    color: #2c3e50;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.footer-section .btn-warning:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.footer-section hr {
+    border-color: #7f8c8d;
+    opacity: 0.3;
+    margin: 2rem 0;
+}
+
+.footer-section .bottom-links a {
+    margin-right: 1rem;
+    font-size: 0.9rem;
+}
+
+.footer-section .bottom-links a:hover {
+    transform: none;
+    text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .footer-section {
+        text-align: center;
+    }
+
+    .footer-section h5 {
+        border-bottom: none;
+        font-size: 1.1rem;
+    }
+
+    .footer-section .contact-info p {
+        justify-content: center;
+    }
+
+    .footer-section .bottom-links {
+        margin-top: 1rem;
+    }
+
+    .footer-section .bottom-links a {
+        margin: 0 0.5rem;
+        display: inline-block;
+    }
+}
