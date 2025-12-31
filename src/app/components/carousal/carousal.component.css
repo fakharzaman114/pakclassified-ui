@@ -95,7 +95,7 @@
 /* ==========================
    CONTENT WRAPPER
    ========================== */
-.content-wrapper {
+/* .content-wrapper {
     max-width: 400px;
     color: white;
     text-align: left;
@@ -127,12 +127,12 @@
     max-width: 100%;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
     font-weight: 400;
-}
+} */
 
 /* ==========================
    BUTTONS
    ========================== */
-.action-button {
+/* .action-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -169,7 +169,7 @@
 
 .action-button:hover .button-icon {
     transform: translateX(4px);
-}
+} */
 
 /* ==========================
    CONTROLS PANEL
